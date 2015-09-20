@@ -8,7 +8,7 @@ This assignment makes use of data from a personal activity monitoring device, wh
 
 ###Loading and preprocessing the data
 
-1. Load the data:
+1.Load the data:
 
 ```{r loaddata, echo=TRUE}
 setwd("~/r/RER")
@@ -18,7 +18,7 @@ unzip("repdata-data-activity.zip")
 data<-read.csv("activity.csv")
 ```
 
-2. Process/transform the data (if necessary) into a format suitable for your analysis:
+2.Process/transform the data (if necessary) into a format suitable for your analysis:
 
 ```{r procdata,echo=TRUE}
 summary(data)
@@ -32,21 +32,21 @@ rnadata<-data[complete.cases(data),]
 
 ###Calculate mean total number of steps taken per day
 
-1. Calculate the total number of steps taken per day
+1.Calculate the total number of steps taken per day
 
 ```{r tspd,echo=TRUE}
 TS<-aggregate(rnadata$steps,by=list(rnadata$date),FUN=sum)
 names(TS)<-c("date","Totalsteps")
 ```
 
-2. Make a histogram of the total number steps per day
+2.Make a histogram of the total number steps per day
 
 ```{r hist,echo=TRUE}
 library(ggplot2)
 ggplot(TS,aes(x=Totalsteps))+ geom_histogram(binwidth=500,colour="black", fill="white")+labs(x="Total steps")
 ```
 
-3. Calculate and report the mean and median of the total number of steps taken per day
+3.Calculate and report the mean and median of the total number of steps taken per day
 
 ```{r meanTS, echo=TRUE}
 mean(TS$Totalsteps)
